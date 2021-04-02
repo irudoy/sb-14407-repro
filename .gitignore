@@ -1,0 +1,10 @@
+.idea
+.vscode
+.DS_Store
+node_modules
+yarn-error.log
+.storybook-out
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
