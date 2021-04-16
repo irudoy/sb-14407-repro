@@ -1,12 +1,10 @@
-import * as webpack from 'webpack';
-
 module.exports = {
     core: {
         builder: 'webpack5',
     },
     addons: ['@storybook/addon-essentials', '@storybook/addon-knobs/register', '@storybook/addon-storysource'],
-    stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-    managerWebpack: (config: webpack.Configuration) => {
+    stories: ['../src/**/*.stories.js'],
+    managerWebpack: (config) => {
         const finalConfig = {
             ...config,
             plugins: config?.plugins?.filter(({ constructor: { name } }) => {
@@ -17,7 +15,7 @@ module.exports = {
         };
         return finalConfig;
     },
-    webpackFinal: (config: webpack.Configuration) => {
+    webpackFinal: (config) => {
         const finalConfig = {
             ...config,
             module: {
@@ -27,12 +25,6 @@ module.exports = {
                         strictExportPresence: true
                     }
                 },
-                rules: [
-                    {
-                        test: /\.((js|ts)x?)$/,
-                        use: 'babel-loader',
-                    }
-                ]
             },
             plugins: (config.plugins || []).filter(({ constructor: { name } }) => {
                 if (name === 'DefinePlugin') return false;
