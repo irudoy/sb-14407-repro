@@ -32,6 +32,7 @@ module.exports = {
                 return true;
             })
         };
+        finalConfig.resolve.mainFields = ['browser', 'main'];
         return finalConfig;
     },
 };
